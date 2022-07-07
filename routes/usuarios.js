@@ -1,17 +1,19 @@
     const router = require('express').Router();
+    const express = require('express')
     const usuario_DAO  = require('../controller/usuarioDAO')
     const usuario_obj =  require('../controller/usuario')
     const bcrypt = require('bcrypt');
     const saltRounds = 10;
     const myPlaintextPassword = 's0/\/\P4$$w0rD';
     const someOtherPlaintextPassword = 'not_bacon';
+    const jwt = require('jsonwebtoken');
     
     router.get('/',(req,res)=>{
         var hash_;
         res.send('Hola prueba')
 
        
-    },);
+    });
 
 router.post('/usuarioNuevo', async (req,res)=>{
     nombre = req.body.nombre
@@ -90,6 +92,15 @@ router.post('/usuarioNuevo', async (req,res)=>{
     })
      //metodo que obtienes user, pasando JSON con correo y contraseña
     router.get('/getUserlogin',async(req,res)=>{
+
+        const payload = {
+            check:true
+        };
+        const token = jwt.sign(payload,'clavesecreta123',{
+            expiresIn:'7d'
+        });
+        console.log(token)
+
         correo_electronico =  req.body.correo_electronico
         contrasenia = req.body.contrasenia
 
@@ -114,10 +125,45 @@ router.post('/usuarioNuevo', async (req,res)=>{
         res.send(usuario)
     });
 
+    const verificacion = express.Router()
+
+    verificacion.use((req,res,next)=>{
+        let token = req.headers['x-access-token'] || req.headers['authorization']
+        // console.log(token)
+        if(!token){
+            res.status(401).send(
+                {
+                    error: 'es necesario un token'
+                }
+            )
+            return
+        }
+        if(token.startsWith('Bearer ')){
+            token = token.slice(7,token.length);
+            console.log(token)
+        }
+        if(token){
+            jwt.verify(token,"clavesecreta123",(error,decode)=>{
+                console.log(error)
+                if(error){
+                    return res.json({
+                        message: 'el token no es valido'
+                    },)
+                }else{
+                    req.decode = decode;
+                    next();
+                }
+            },)
+        }
+              
+    });
 
 
 
 
+    router.get('/info',verificacion,(req,res)=>{
+        res.json('Informacion importante entregada')
+    });
 
 
 
