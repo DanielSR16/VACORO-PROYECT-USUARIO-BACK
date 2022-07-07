@@ -50,8 +50,8 @@ const Usuario = usuarios_model.db.usuario
             if (resultado === null) {
                 return null
               } else {
-                return resultado // true
-               // 'My Title'
+                return resultado 
+              
               }
         }catch(err){
             return err

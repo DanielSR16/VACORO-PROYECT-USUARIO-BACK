@@ -11,7 +11,7 @@
         res.send('Hola prueba')
 
        
-    });
+    },);
 
 router.post('/usuarioNuevo', async (req,res)=>{
     nombre = req.body.nombre
