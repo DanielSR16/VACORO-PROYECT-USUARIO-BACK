@@ -91,7 +91,7 @@ router.post('/usuarioNuevo', async (req,res)=>{
         res.send(usuario)
     })
      //metodo que obtienes user, pasando JSON con correo y contraseña
-    router.get('/getUserlogin',async(req,res)=>{
+    router.post('/getUserlogin',async(req,res)=>{
 
         const payload = {
             check:true
