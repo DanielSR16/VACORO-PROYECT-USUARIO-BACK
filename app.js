@@ -10,8 +10,11 @@ app.use(bodyParser.json());
 require('./db/connection');
 
 const userRouter = require('./routes/usuarios');
+const mainRouter = require('./routes/main');
 
 app.use('/usuario',userRouter);
+app.use('/', mainRouter);
+
 
 
 
