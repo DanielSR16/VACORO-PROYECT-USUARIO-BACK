@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/VACORO-PROYECT-USUARIO-BACK.iml" filepath="$PROJECT_DIR$/.idea/VACORO-PROYECT-USUARIO-BACK.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/usuario.iml" filepath="$PROJECT_DIR$/.idea/usuario.iml" />
->>>>>>> 602b4b69235db87da538b1564b984fb777987f11
     </modules>
   </component>
 </project>
