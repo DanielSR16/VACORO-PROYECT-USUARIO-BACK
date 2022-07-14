@@ -110,19 +110,31 @@ router.post('/usuarioNuevo', async (req,res)=>{
 
         const usuario = await usuario_DAO.controller.getUserEmailPass(Usuario)
         if (usuario == null){
+            res.send({id: 'errorEmail'})
             console.log('Correo o contraseña incorrecta')
         }else{
             const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
             if(resultado == true){
                 console.log('paso login')
+                res.send(usuario);
             }else{
-                console.log('Correo o contraseña incorrecta');
+                res.send({id: 'errorPassword'})
+
             }
-            // falsy: false
+
         }
-  
-    
+    });
+
+    router.post('/getUserbyId',async(req,res)=>{
+        id =  req.body.id
+
+        const Usuario = {
+            id : id,
+        }
+
+        const usuario = await usuario_DAO.controller.getUserbyId(Usuario)
         res.send(usuario)
+
     });
 
     const verificacion = express.Router()

@@ -45,7 +45,7 @@ const Usuario = usuarios_model.db.usuario
                 where: {
                     correo_electronico : usuario.correo_electronico,
                 },
-                attributes: ['id','contrasenia']
+                attributes: ['id','nombre','correo_electronico','contrasenia']
             })
             if (resultado === null) {
                 return null
@@ -57,6 +57,25 @@ const Usuario = usuarios_model.db.usuario
             return err
         }
     }
+async function getUserbyId(usuario){
+    console.log(usuario)
+
+    try{
+        resultado = await Usuario.findOne({
+            where: {
+                id : usuario.id,
+            },
+            attributes: ['id','nombre','correo_electronico','contrasenia']
+        })
+        if (resultado === null) {
+            return null
+        } else {
+            return resultado
+        }
+    }catch(err){
+        return err
+    }
+}
 
     
 
@@ -65,7 +84,7 @@ controller.create = newUsuario
 controller.getAll = allUsuarios
 controller.modificar = updateUsuario
 controller.getUserEmailPass = getUserbyEmailAndPassword
-
+controller.getUserbyId = getUserbyId
 
 
 
