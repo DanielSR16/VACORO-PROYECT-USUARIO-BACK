@@ -23,7 +23,7 @@ router.post('/usuarioNuevo', async (req,res)=>{
     ciudad = req.body.ciudad
     estado =  req.body.estado
     edad = req.body.edad
-    rancho = req.body.nombre_rancho
+    nombre_rancho = req.body.nombre_rancho
     url_image = req.body.url_image
     
     bcrypt.genSalt(10, function (err, salt) {
@@ -38,7 +38,7 @@ router.post('/usuarioNuevo', async (req,res)=>{
             ciudad : ciudad,
             estado : estado,
             edad : edad,
-            rancho : rancho,
+              nombre_rancho : nombre_rancho,
             url_image : url_image
     
         }
