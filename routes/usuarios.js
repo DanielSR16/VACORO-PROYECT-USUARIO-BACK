@@ -111,11 +111,11 @@ router.post('/usuarioNuevo', async (req,res)=>{
         const usuario = await usuario_DAO.controller.getUserEmailPass(Usuario)
         if (usuario == null){
             res.send({id: 'errorEmail'})
-            console.log('Correo o contraseña incorrecta')
+            
         }else{
             const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
             if(resultado == true){
-                console.log('paso login')
+                
                 res.send(usuario);
             }else{
                 res.send({id: 'errorPassword'})
