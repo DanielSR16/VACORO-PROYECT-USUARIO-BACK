@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) =>{
         contrasenia: Sequelize.STRING,
         ciudad: Sequelize.STRING,
         estado: Sequelize.STRING,
-        edad: Sequelize.INET,
+        edad: Sequelize.INTEGER,
         nombre_rancho: Sequelize.STRING,
         url_image: Sequelize.STRING  
     }, { freezeTableName: true, timestamps: false });
