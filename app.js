@@ -20,7 +20,7 @@ app.use('/usuario',userRouter);
 
 app.get('/',(req,res)=>{
 
-    res.send('Estoy en funcion api usuarios').status(200)
+    res.send('Estoy en funcion api usuarios 2').status(200)
 
 })
 
