@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d158f09d-6c36-4237-a4e7-3e26053384e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/usuarios.js" afterDir="false" />
     </list>
@@ -61,7 +60,11 @@
       <workItem from="1657471466197" duration="9184000" />
       <workItem from="1657682634089" duration="7820000" />
       <workItem from="1657770109687" duration="1837000" />
-      <workItem from="1657788356428" duration="1288000" />
+      <workItem from="1657788356428" duration="4646000" />
+      <workItem from="1657860541574" duration="1817000" />
+      <workItem from="1657902233374" duration="3602000" />
+      <workItem from="1658005528640" duration="638000" />
+      <workItem from="1658198065149" duration="5333000" />
     </task>
     <servers />
   </component>
@@ -81,9 +84,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1657475520656">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1657908767098">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1657475520656" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1657908767098" />
   </component>
 </project>
