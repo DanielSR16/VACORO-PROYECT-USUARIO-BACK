@@ -114,8 +114,12 @@ router.post('/usuarioNuevo', async (req,res)=>{
         }else{
             const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
             if(resultado == true){
-                
-                res.send(usuario);
+
+                data = {
+                    "token":token,
+                    usuario 
+                }
+                res.send(data);
             }else{
                 res.send({id: 'errorEmailPassword'});
             }
