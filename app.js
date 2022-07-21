@@ -13,11 +13,17 @@ const userRouter = require('./routes/usuarios');
 const mainRouter = require('./routes/main');
 
 app.use('/usuario',userRouter);
-app.use('/', mainRouter);
+// app.use('/', mainRouter);
 
 
 
+
+app.get('/',(req,res)=>{
+
+    res.send('Estoy en funcion api usuarios 2').status(200)
+
+})
 
 app.listen(3000,()=>{
-    console.log('servidor corriendo')
+    console.log('servidor corriendo en el puerto 3000');
 })
