@@ -133,14 +133,15 @@ router.post('/usuarioNuevo', async (req,res)=>{
     router.post('/getUserlogin',async(req,res)=>{
 
         const payload = {
-            check:true
+            check:true,
+            correo : req.body.correo_electronico
         };
-        const token = jwt.sign(payload,'clavesecreta123',{
+        const token = await jwt.sign(payload,'clavesecreta123',{
             expiresIn:'7d'
         });
         console.log(token)
 
-        correo_electronico =  req.body.correo_electronico
+        correo_electronico = req.body.correo_electronico
         contrasenia = req.body.contrasenia
 
         const Usuario = {
@@ -153,8 +154,12 @@ router.post('/usuarioNuevo', async (req,res)=>{
         }else{
             const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
             if(resultado == true){
-                
-                res.send(usuario);
+
+                data = {
+                    "token":token,
+                    usuario
+                }
+                res.send(data);
             }else{
                 res.send({id: 'errorEmailPassword'});
             }
