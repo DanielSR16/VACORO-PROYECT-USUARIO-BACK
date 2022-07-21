@@ -65,7 +65,7 @@ async function getUserbyId(usuario){
             where: {
                 id : usuario.id,
             },
-            attributes: ['id','nombre','correo_electronico','contrasenia']
+            attributes: ['id','nombre','apellido','correo_electronico','contrasenia','ciudad','estado','edad','nombre_rancho','url_image']
         })
         if (resultado === null) {
             return null
