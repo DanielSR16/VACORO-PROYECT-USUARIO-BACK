@@ -154,7 +154,6 @@ router.post('/usuarioNuevo', async (req,res)=>{
         }else{
             const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
             if(resultado == true){
-
                 data = {
                     "token":token,
                     usuario
