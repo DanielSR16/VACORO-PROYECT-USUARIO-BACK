@@ -133,14 +133,15 @@ router.post('/usuarioNuevo', async (req,res)=>{
     router.post('/getUserlogin',async(req,res)=>{
 
         const payload = {
-            check:true
+            check:true,
+            correo : req.body.correo_electronico
         };
-        const token = jwt.sign(payload,'clavesecreta123',{
+        const token = await jwt.sign(payload,'clavesecreta123',{
             expiresIn:'7d'
         });
         console.log(token)
 
-        correo_electronico =  req.body.correo_electronico
+        correo_electronico = req.body.correo_electronico
         contrasenia = req.body.contrasenia
 
         const Usuario = {
