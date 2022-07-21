@@ -1,4 +1,4 @@
-    const router = require('express').Router();
+const router = require('express').Router();
     const express = require('express')
     const usuario_DAO  = require('../controller/usuarioDAO')
     const usuario_obj =  require('../controller/usuario')
@@ -57,16 +57,18 @@ router.post('/usuarioNuevo', async (req,res)=>{
 
     router.post('/actualizarUsuario', async (req,res)=>{
 
-        id = req.body.id
+        id = req.body.id,
         nombre = req.body.nombre
         apellido = req.body.apellido
-        correo_electronico =  req.body.correo_electronico
+        correo_electronico = req.body.correo_electronico
         contrasenia = req.body.contrasenia
         ciudad = req.body.ciudad
         estado =  req.body.estado
         edad = req.body.edad
-        rancho = req.body.nombre_rancho
+        nombre_rancho = req.body.nombre_rancho
         url_image = req.body.url_image
+
+        console.log(nombre_rancho);
 
         const Usuario = {
             id : id,
@@ -77,14 +79,51 @@ router.post('/usuarioNuevo', async (req,res)=>{
             ciudad : ciudad,
             estado : estado,
             edad : edad,
-            rancho : rancho,
+            nombre_rancho : nombre_rancho,
             url_image : url_image
-
         }
 
         const usuario = await usuario_DAO.controller.modificar(Usuario);
-        res.json(usuario)
-    })
+        res.send({status: 'ok'});
+    });
+
+    router.post('/actualizarUsuarioPassword', async (req,res)=>{
+
+        id = req.body.id,
+        nombre = req.body.nombre
+        apellido = req.body.apellido
+        correo_electronico = req.body.correo_electronico,
+        contrasenia = req.body.contrasenia
+        ciudad = req.body.ciudad
+        estado =  req.body.estado
+        edad = req.body.edad
+        nombre_rancho = req.body.nombre_rancho
+        url_image = req.body.url_image
+
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(contrasenia, salt, function (err, hash) {
+                //   console.log(hash);
+
+                const Usuario = {
+                    id : id,
+                    nombre : nombre,
+                    apellido : apellido,
+                    correo_electronico : correo_electronico,
+                    contrasenia : hash,
+                    ciudad : ciudad,
+                    estado : estado,
+                    edad : edad,
+                    nombre_rancho : nombre_rancho,
+                    url_image : url_image
+                }
+
+                const usuario = usuario_DAO.controller.modificar(Usuario);
+
+                res.send({status: 'ok'});
+            });
+        });
+
+    });
 
     router.get('/allUsuarios',async(req,res)=>{
         const usuario =  await usuario_DAO.controller.getAll()
@@ -114,12 +153,8 @@ router.post('/usuarioNuevo', async (req,res)=>{
         }else{
             const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
             if(resultado == true){
-
-                data = {
-                    "token":token,
-                    usuario 
-                }
-                res.send(data);
+                
+                res.send(usuario);
             }else{
                 res.send({id: 'errorEmailPassword'});
             }
@@ -138,6 +173,31 @@ router.post('/usuarioNuevo', async (req,res)=>{
         res.send(usuario)
 
     });
+
+    router.post('/getUserPasswordbyId',async(req,res)=>{
+        id =  req.body.id
+        contrasenia =  req.body.contrasenia
+
+        const Usuario = {
+            id : id,
+        }
+
+        const usuario = await usuario_DAO.controller.getUserbyId(Usuario);
+        if (usuario == null){
+            res.send({status: 'error'});
+        }else{
+            const resultado = await bcrypt.compare(contrasenia, usuario.contrasenia);
+            if(resultado == true){
+
+                res.send({status: 'ok'});
+            }else{
+                res.send({status: 'error'});
+            }
+
+        }
+
+    });
+
 
     const verificacion = express.Router()
 
